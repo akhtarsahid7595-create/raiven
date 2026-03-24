@@ -89,6 +89,10 @@ nav {
     gap: 2.5rem;
 }
 
+.menu-toggle {
+    display: none;
+}
+
 .nav-links a {
     color: var(--grey-light);
     text-decoration: none;
@@ -467,13 +471,73 @@ footer {
     transform: rotate(45deg);
 }
 
-/* Responsive */
+/* Responsive adjustments for Navigation & Grid */
 @media (max-width: 900px) {
     .split-layout {
         grid-template-columns: 1fr;
         gap: 2rem;
     }
+    
     .hero h1 {
         font-size: 3rem;
     }
+
+    /* Burger Menu Toggle Trigger */
+    .menu-toggle {
+        display: flex;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--gold-primary);
+        z-index: 1001;
+        transition: var(--transition);
+    }
+
+    /* Navigation overlay layout */
+    .nav-links {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(13, 13, 13, 0.98);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        z-index: 1000;
+        transform: translateY(-100%);
+        transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .nav-links.active {
+        transform: translateY(0);
+    }
+
+    .nav-links a {
+        font-size: 1.3rem;
+        font-weight: 600;
+    }
+
+    /* Buttons groups stacked */
+    .cta-group {
+        flex-direction: column;
+        width: 100%;
+        max-width: 380px;
+        gap: 12px;
+    }
+
+    .cta-group .btn {
+        width: 100%;
+    }
+
+    nav .btn {
+        display: none; /* Hide standard buy btn to make it clean on mobile headers */
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 { font-size: 2.3rem; }
+    .section-header h2 { font-size: 1.8rem; }
+    .gold-text { font-size: inherit; }
 }
